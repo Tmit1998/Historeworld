@@ -18,22 +18,26 @@ Route::get('/backend/dashboard', function () {
 });
 
 
-Route::get('/backend/products', function () {
-    return view('backend.products.index');
-});
-
-Route::get('/backend/products', function () {
-    return view('backend/products/create');
-});
-
-
-
-// Route::prefix('backend.products.')->group(function () {
-
-//   Route::get('index' , [\App\Http\Controllers\Backend\ProductController::class , 'index'])->name('products.index');
-//   Route::get('create' , [\App\Http\Controllers\Backend\ProductController::class , 'create'])->name('products.create');
-
+// Route::get('/backend/products', function () {
+//     return view('backend.products.index');
 // });
+
+// Route::get('/backend/products', function () {
+//     return view('backend/products/create');
+// });
+
+
+
+Route::prefix('/backend')->group(function () {
+
+  Route::get('/products/index' , [\App\Http\Controllers\Backend\ProductController::class , 'index'])->name('.backend.products.index');
+  Route::get('/products/create' , [\App\Http\Controllers\Backend\ProductController::class , 'create'])->name('backend.products.create');
+
+  Route::get('/users/index' , [\App\Http\Controllers\Backend\UserController::class , 'index'])->name('.backend.users.index');
+  Route::get('/users/create' , [\App\Http\Controllers\Backend\UserController::class , 'create'])->name('backend.users.create');
+
+
+});
 
 // Route::group([
 //     'namespace' => 'Backend',
